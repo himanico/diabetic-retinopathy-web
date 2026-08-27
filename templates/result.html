@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis Results | RetinaCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* ==============================
+           RESULT IMAGE
+        ============================== */
+
+        .result-image-card {
+            height: 300px;
+
+            padding: 12px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: white;
+
+            border: 1px solid #eeeaf3;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 8px 25px rgba(70,50,120,0.05);
+        }
+
+        .result-image-card img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border-radius: 10px;
+        }
+
+        .no-image {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            background: #faf9ff;
+
+            border-radius: 10px;
+
+            color: #9994a7;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<div class="dashboard-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">◉</div>
+
+            <span>RetinaCare</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('patient') }}">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+
+            <a href="{{ url_for('patient') }}">
+                <span>♙</span>
+                Patient Info
+            </a>
+
+
+            <a href="{{ url_for('symptoms') }}">
+                <span>◉</span>
+                Symptoms
+            </a>
+
+
+            <a href="{{ url_for('upload') }}">
+                <span>▣</span>
+                Image Upload
+            </a>
+
+
+            <a href="{{ url_for('previous_result') }}"
+               class="active">
+
+                <span>▤</span>
+                Results
+
+            </a>
+
+
+            <a href="#">
+                <span>ⓘ</span>
+                Disease Info
+            </a>
+
+
+            <a href="{{ url_for('home') }}">
+                <span>↪</span>
+                Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="dashboard-main">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div class="mobile-menu">
+                ☰
+            </div>
+
+
+            <div class="mini-brand">
+                ◉ RetinaCare
+            </div>
+
+
+            <div class="profile-circle">
+                ♙
+            </div>
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+
+        <section class="dashboard-content">
+
+
+            <!-- PAGE TITLE -->
+
+            <div class="page-title">
+
+                <h1>
+                    Analysis Results
+                </h1>
+
+                <p>
+                    AI-assisted retinal screening result
+                </p>
+
+            </div>
+
+
+
+            <!-- RESULT TOP -->
+
+            <div class="result-top">
+
+
+                <!-- ==============================
+                     UPLOADED RETINA IMAGE
+                ============================== -->
+
+                <div class="result-image-card">
+
+                    {% if image_url %}
+
+                        <img
+                            src="{{ image_url }}"
+                            alt="Uploaded Retinal Image"
+                        >
+
+                    {% else %}
+
+                        <div class="no-image">
+
+                            <div style="font-size:42px;">
+                                👁️
+                            </div>
+
+                            <div>
+                                No retinal image available
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- SEVERITY -->
+
+                <div class="severity-card">
+
+                    <span class="result-label">
+                        Severity Level
+                    </span>
+
+
+                    <h2>
+                        {{ prediction }}
+                    </h2>
+
+
+                    <div class="confidence-title">
+
+                        <span>
+                            Confidence Score
+                        </span>
+
+                        <strong>
+                            {{ confidence }}%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            data-confidence="{{ confidence }}">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RESULT BOTTOM -->
+
+            <div class="result-bottom">
+
+
+                <!-- FINDINGS -->
+
+                <div class="findings-card">
+
+                    <h3>
+                        Findings
+                    </h3>
+
+
+                    <div class="finding">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        Retinal image analyzed
+
+                    </div>
+
+
+                    <div class="finding">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        AI classification completed
+
+                    </div>
+
+
+                    <div class="finding">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        Confidence score generated
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECOMMENDATIONS -->
+
+                <div class="recommendation-card">
+
+                    <div>
+
+                        <h3>
+                            Recommendations
+                        </h3>
+
+
+                        <p>
+                            Consult an ophthalmologist for
+                            further evaluation and regular
+                            eye check-ups.
+                        </p>
+
+                    </div>
+
+
+                    <div class="doctor-small">
+                        👩‍⚕️
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="result-actions">
+
+
+                <a href="{{ url_for('upload') }}"
+                   class="secondary-button">
+
+                    Back
+
+                </a>
+
+
+                <button
+                    type="button"
+                    onclick="window.print()"
+                    class="primary-button">
+
+                    Download Report
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- MEDICAL WARNING -->
+
+            <div class="medical-warning">
+
+                ⓘ This is an AI-generated result and should
+                be confirmed by a medical professional.
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+    const progressFill =
+        document.querySelector(".progress-fill");
+
+    if (progressFill) {
+
+        const confidence =
+            parseFloat(
+                progressFill.getAttribute(
+                    "data-confidence"
+                )
+            ) || 0;
+
+        progressFill.style.width =
+            confidence + "%";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

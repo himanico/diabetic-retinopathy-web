@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RetinaCare | Diabetic Retinopathy Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="home-page">
+
+<header class="home-header">
+
+    <div class="brand">
+        <div class="brand-icon">◉</div>
+        <span>RetinaCare</span>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="#about">About</a>
+        <a href="#disease">Disease Info</a>
+        <a href="#contact">Contact</a>
+
+        <a class="nav-button"
+           href="{{ url_for('login') }}">
+            Get Started
+        </a>
+    </nav>
+
+</header>
+
+
+<main class="hero-section">
+
+    <div class="hero-content">
+
+        <div class="small-label">
+            AI-ASSISTED RETINAL SCREENING
+        </div>
+
+        <h1>
+            AI-Powered
+            <span>Diabetic Retinopathy</span>
+            Detection
+        </h1>
+
+        <p class="hero-subtitle">
+            Early detection. Better vision.<br>
+            Healthier tomorrow.
+        </p>
+
+        <p class="hero-description">
+            Upload your retinal image and get instant
+            AI analysis to detect the signs of
+            Diabetic Retinopathy.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('login') }}"
+               class="primary-button">
+                Get Started
+            </a>
+
+            <a href="#about"
+               class="secondary-button">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE IMAGE -->
+    <div class="hero-visual">
+
+        <div class="retina-circle">
+
+            <img src="{{ url_for('static', filename='images/image.jpeg') }}"
+                 alt="Retinal Image">
+
+        </div>
+
+        <div class="heart-badge">
+            ♡
+        </div>
+
+    </div>
+
+</main>
+
+
+<section class="feature-strip">
+
+    <div class="feature-card">
+        <div class="feature-icon">⚙</div>
+        <h3>AI-Powered</h3>
+        <p>Accurate Analysis</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">♙</div>
+        <h3>Secure & Private</h3>
+        <p>Your data is safe</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">◷</div>
+        <h3>Fast Results</h3>
+        <p>Instant Insights</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">♧</div>
+        <h3>Expert Support</h3>
+        <p>We are here to help</p>
+    </div>
+
+</section>
+
+
+<section id="about" class="home-info-section">
+
+    <h2>About RetinaCare</h2>
+
+    <p>
+        RetinaCare uses AI-assisted retinal image analysis
+        to help screen for diabetic retinopathy.
+        The system provides a quick preliminary result
+        that should be reviewed by a qualified medical professional.
+    </p>
+
+</section>
+
+
+<section id="disease" class="home-info-section">
+
+    <h2>Diabetic Retinopathy</h2>
+
+    <p>
+        Diabetic retinopathy is a diabetes-related eye condition
+        that can affect the blood vessels of the retina.
+        Regular eye screening can help with early detection.
+    </p>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | RetinaCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* =========================================
+           REGISTER PAGE EYE
+        ========================================= */
+
+        .register-art {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ece9ff,
+                    #fff0f5
+                );
+        }
+
+
+        /* EYE IMAGE */
+
+        .big-eye {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 80%;
+
+            max-width: 500px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            animation:
+                eyeAppear 0.8s ease-out,
+                eyeFloat 4s ease-in-out 1s infinite;
+        }
+
+
+        .big-eye img {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            height: auto;
+
+            object-fit: contain;
+
+            display: block;
+
+            filter:
+                drop-shadow(
+                    0 25px 30px
+                    rgba(60, 40, 120, 0.20)
+                );
+
+        }
+
+
+        /* EYE APPEAR */
+
+        @keyframes eyeAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.7);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* EYE FLOAT */
+
+        @keyframes eyeFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-10px);
+
+            }
+
+        }
+
+
+        /* DECORATIVE PLUS */
+
+        .plus-art {
+
+            position: absolute;
+
+            z-index: 3;
+
+            top: 100px;
+
+            right: 65px;
+
+            color: white;
+
+            font-size: 45px;
+
+            opacity: 0.6;
+        }
+
+
+        .plus-two {
+
+            top: auto;
+
+            bottom: 70px;
+
+            left: 50px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .big-eye {
+
+                width: 75%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="auth-page">
+
+
+<div class="auth-container">
+
+
+    <!-- =========================================
+         LEFT SIDE - CREATE ACCOUNT
+    ========================================= -->
+
+    <div class="auth-left register-left">
+
+
+        <div class="brand auth-brand">
+
+            <div class="brand-icon">
+                ◉
+            </div>
+
+            <span>
+                RetinaCare
+            </span>
+
+        </div>
+
+
+        <div class="auth-form-area">
+
+
+            <h1>
+                Create Your Account
+            </h1>
+
+
+            <p class="auth-subtitle">
+                Join us to get started
+            </p>
+
+
+            <form action="{{ url_for('register') }}"
+                  method="POST"
+                  class="auth-form"
+                  onsubmit="return checkPassword()">
+
+
+                <!-- USERNAME -->
+
+                <label>
+                    Username
+                </label>
+
+                <div class="input-box">
+
+                    <span>
+                        ♙
+                    </span>
+
+                    <input type="text"
+                           name="username"
+                           placeholder="Enter username"
+                           required>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <label>
+                    Email Address
+                </label>
+
+                <div class="input-box">
+
+                    <span>
+                        ✉
+                    </span>
+
+                    <input type="email"
+                           placeholder="Enter email address">
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <label>
+                    Phone Number
+                </label>
+
+                <div class="input-box">
+
+                    <span>
+                        ☎
+                    </span>
+
+                    <input type="tel"
+                           placeholder="Enter phone number">
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <label>
+                    Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>
+                        🔒
+                    </span>
+
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Enter password"
+                           required>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <label>
+                    Confirm Password
+                </label>
+
+                <div class="input-box">
+
+                    <span>
+                        🔒
+                    </span>
+
+                    <input type="password"
+                           id="confirm_password"
+                           placeholder="Confirm password"
+                           required>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms-label">
+
+                    <input type="checkbox"
+                           required>
+
+                    <span>
+
+                        I agree to the
+
+                        <a href="#">
+                            Terms & Conditions
+                        </a>
+
+                        and
+
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+
+                    </span>
+
+                </label>
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <button type="submit"
+                        class="primary-button full-button">
+
+                    Create Account
+
+                </button>
+
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <p class="bottom-text">
+
+                Already have an account?
+
+                <a href="{{ url_for('login') }}">
+                    Login
+                </a>
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         RIGHT SIDE - IMAGE
+    ========================================= -->
+
+    <div class="auth-right register-art">
+
+
+        <div class="big-eye">
+
+            <img src="{{ url_for('static', filename='images/image1.jpeg') }}"
+                 alt="RetinaCare Eye Image">
+
+        </div>
+
+
+        <div class="plus-art">
+            +
+        </div>
+
+
+        <div class="plus-art plus-two">
+            +
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+function checkPassword() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirm_password").value;
+
+
+    if (password !== confirmPassword) {
+
+        alert("Passwords do not match.");
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+</script>
+
+
+</body>
+
+</html>

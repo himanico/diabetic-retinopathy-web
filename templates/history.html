@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Screening History</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8fb;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a5f;
+        }
+
+        h2 {
+            color: #1e6fa8;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .result-card img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        /* ==============================
+           MEDICAL IMAGE
+        ============================== */
+
+        .page-medical-image {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: 280px;
+            object-fit: cover;
+            margin: 20px auto 30px auto;
+            border-radius: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 18px;
+            background: #1e6fa8;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .empty {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <a href="{{ url_for('patient') }}"
+       class="back-btn">
+        ← Back to Patient Information
+    </a>
+
+
+    <h1>📋 Screening History</h1>
+
+
+    <!-- =========================================
+         MEDICAL / SCIENTIFIC IMAGE
+    ========================================== -->
+
+    <img
+        src="{{ url_for('static', filename='images/image8.jpg') }}"
+        alt="Retina Screening History"
+        class="page-medical-image"
+    >
+
+
+    <!-- ================================================= -->
+    <!-- PATIENT INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="card">
+
+        <h2>👤 Patient Information</h2>
+
+        <p>
+            <strong>Full Name:</strong>
+            {{ user.full_name or "Not provided" }}
+        </p>
+
+        <p>
+            <strong>Age:</strong>
+            {{ user.age or "Not provided" }}
+        </p>
+
+        <p>
+            <strong>Gender:</strong>
+            {{ user.gender or "Not provided" }}
+        </p>
+
+        <p>
+            <strong>Mobile:</strong>
+            {{ user.mobile or "Not provided" }}
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            {{ user.email or "Not provided" }}
+        </p>
+
+        <p>
+            <strong>Diabetes:</strong>
+            {{ user.diabetes or "Not provided" }}
+        </p>
+
+        <p>
+            <strong>Diabetes Duration:</strong>
+
+            {% if user.diabetes_years is not none %}
+
+                {{ user.diabetes_years }} years
+
+            {% else %}
+
+                Not provided
+
+            {% endif %}
+
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SYMPTOMS -->
+    <!-- ================================================= -->
+
+    <div class="card">
+
+        <h2>🩺 Symptoms</h2>
+
+        {% if symptoms %}
+
+            <p>
+                <strong>Blurred Vision:</strong>
+                {{ symptoms.blurred_vision }}
+            </p>
+
+            <p>
+                <strong>Floaters in Vision:</strong>
+                {{ symptoms.floaters }}
+            </p>
+
+            <p>
+                <strong>Difficulty Seeing at Night:</strong>
+                {{ symptoms.night_vision }}
+            </p>
+
+            <p>
+                <strong>Eye Pain:</strong>
+                {{ symptoms.eye_pain }}
+            </p>
+
+            <p>
+                <strong>Frequent Headache:</strong>
+                {{ symptoms.headache }}
+            </p>
+
+            <p>
+                <strong>Blood Sugar Controlled:</strong>
+                {{ symptoms.blood_sugar_controlled }}
+            </p>
+
+        {% else %}
+
+            <p>
+                No symptoms information saved yet.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SCREENING RESULTS -->
+    <!-- ================================================= -->
+
+    <h2>👁️ Previous Retina Screenings</h2>
+
+
+    {% if results %}
+
+        {% for result in results %}
+
+            <div class="result-card">
+
+                <p>
+                    <strong>Screening ID:</strong>
+                    {{ result.id }}
+                </p>
+
+                <h2>
+                    {{ result.prediction }}
+                </h2>
+
+                <p>
+                    <strong>Confidence:</strong>
+                    {{ result.confidence }}%
+                </p>
+
+
+                {% if result.created_at %}
+
+                    <p>
+                        <strong>Date:</strong>
+                        {{ result.created_at.strftime('%d-%m-%Y %H:%M') }}
+                    </p>
+
+                {% endif %}
+
+
+                <img
+                    src="{{ url_for('static', filename=result.image_path.replace('static/', '')) }}"
+                    alt="Uploaded Retina Image"
+                >
+
+            </div>
+
+        {% endfor %}
+
+
+    {% else %}
+
+        <div class="empty">
+
+            <h2>No Previous Results</h2>
+
+            <p>
+                You have not completed any retina screening yet.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+</div>
+
+</body>
+
+</html>

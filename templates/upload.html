@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Retinal Image | RetinaCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<div class="dashboard-layout">
+
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">◉</div>
+
+            <span>RetinaCare</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <a href="{{ url_for('patient') }}">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="{{ url_for('patient') }}">
+
+                <span>♙</span>
+
+                Patient Info
+
+            </a>
+
+
+            <a href="{{ url_for('symptoms') }}">
+
+                <span>◉</span>
+
+                Symptoms
+
+            </a>
+
+
+            <a href="{{ url_for('upload') }}"
+               class="active">
+
+                <span>▣</span>
+
+                Image Upload
+
+            </a>
+
+
+            <a href="{{ url_for('upload') }}">
+
+                <span>▤</span>
+
+                Results
+
+            </a>
+
+
+            <a href="#">
+
+                <span>ⓘ</span>
+
+                Disease Info
+
+            </a>
+
+
+            <a href="{{ url_for('home') }}">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+
+    <main class="dashboard-main">
+
+
+        <header class="dashboard-header">
+
+            <div class="mobile-menu">
+                ☰
+            </div>
+
+
+            <div class="mini-brand">
+
+                ◉ RetinaCare
+
+            </div>
+
+
+            <div class="profile-circle">
+
+                ♙
+
+            </div>
+
+        </header>
+
+
+
+        <section class="dashboard-content">
+
+
+            <!-- STEPPER REMOVED -->
+
+
+            <div class="page-title">
+
+                <h1>
+                    Upload Retinal Image
+                </h1>
+
+                <p>
+                    Upload a clear fundus/retinal image for analysis
+                </p>
+
+            </div>
+
+
+
+            <form action="{{ url_for('result') }}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                  class="upload-form">
+
+
+                <label class="upload-box"
+                       for="image">
+
+
+                    <input type="file"
+                           id="image"
+                           name="image"
+                           accept=".jpg,.jpeg,.png"
+                           required
+                           onchange="showFileName(this)">
+
+
+                    <div class="upload-icon">
+                        ☁
+                    </div>
+
+
+                    <h3>
+                        Drag & drop your image here
+                    </h3>
+
+
+                    <p>
+                        or
+                    </p>
+
+
+                    <span class="browse-button">
+                        Browse Files
+                    </span>
+
+
+                    <small>
+                        Supports: JPG, PNG | Max size: 10MB
+                    </small>
+
+
+                    <div id="file-name"
+                         class="selected-file">
+                    </div>
+
+
+                </label>
+
+
+
+                <div class="bottom-actions">
+
+
+                    <a href="{{ url_for('symptoms') }}"
+                       class="secondary-button">
+
+                        Back
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="primary-button">
+
+                        Upload & Analyze
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<script>
+
+function showFileName(input) {
+
+    const fileName =
+        document.getElementById("file-name");
+
+
+    if (input.files.length > 0) {
+
+        fileName.innerText =
+            "Selected: " + input.files[0].name;
+
+    } else {
+
+        fileName.innerText = "";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

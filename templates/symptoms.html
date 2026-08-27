@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Symptoms | RetinaCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">◉</div>
+
+            <span>RetinaCare</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('patient') }}">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="{{ url_for('patient') }}">
+
+                <span>♙</span>
+
+                Patient Info
+
+            </a>
+
+
+            <a href="{{ url_for('symptoms') }}"
+               class="active">
+
+                <span>◉</span>
+
+                Symptoms
+
+            </a>
+
+
+            <a href="{{ url_for('upload') }}">
+
+                <span>▣</span>
+
+                Image Upload
+
+            </a>
+
+
+            <a href="{{ url_for('upload') }}">
+
+                <span>▤</span>
+
+                Results
+
+            </a>
+
+
+            <a href="#">
+
+                <span>ⓘ</span>
+
+                Disease Info
+
+            </a>
+
+
+            <a href="{{ url_for('home') }}">
+
+                <span>↪</span>
+
+                Logout
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <div class="mobile-menu">☰</div>
+
+            <div class="mini-brand">
+
+                ◉ RetinaCare
+
+            </div>
+
+            <div class="profile-circle">
+
+                ♙
+
+            </div>
+
+        </header>
+
+
+        <section class="dashboard-content">
+
+
+            <!-- STEPPER REMOVED -->
+
+
+            <div class="page-title">
+
+                <h1>Select Your Symptoms</h1>
+
+                <p>
+                    Choose the symptoms you are experiencing
+                </p>
+
+            </div>
+
+
+            <form action="{{ url_for('symptoms') }}"
+                  method="POST">
+
+
+                <div class="symptom-grid">
+
+
+                    <label class="symptom-card">
+
+                        <input type="checkbox"
+                               name="blurred_vision"
+                               value="Yes"
+                               {% if symptoms and symptoms.blurred_vision %}checked{% endif %}>
+
+                        <div class="symptom-icon">
+                            ◉
+                        </div>
+
+                        <strong>
+                            Blurred Vision
+                        </strong>
+
+                        <span class="card-check">
+                            ✓
+                        </span>
+
+                    </label>
+
+
+                    <label class="symptom-card">
+
+                        <input type="checkbox"
+                               name="floaters"
+                               value="Yes"
+                               {% if symptoms and symptoms.floaters %}checked{% endif %}>
+
+                        <div class="symptom-icon">
+                            ✦
+                        </div>
+
+                        <strong>
+                            Floaters
+                        </strong>
+
+                        <span class="card-check">
+                            ✓
+                        </span>
+
+                    </label>
+
+
+                    <label class="symptom-card">
+
+                        <input type="checkbox"
+                               name="eye_pain"
+                               value="Yes"
+                               {% if symptoms and symptoms.eye_pain %}checked{% endif %}>
+
+                        <div class="symptom-icon">
+                            ◎
+                        </div>
+
+                        <strong>
+                            Eye Discomfort
+                        </strong>
+
+                        <span class="card-check">
+                            ✓
+                        </span>
+
+                    </label>
+
+
+                    <label class="symptom-card">
+
+                        <input type="checkbox"
+                               name="headache"
+                               value="Yes"
+                               {% if symptoms and symptoms.headache %}checked{% endif %}>
+
+                        <div class="symptom-icon">
+                            ◌
+                        </div>
+
+                        <strong>
+                            Headache
+                        </strong>
+
+                        <span class="card-check">
+                            ✓
+                        </span>
+
+                    </label>
+
+
+                    <label class="symptom-card">
+
+                        <input type="checkbox"
+                               name="night_vision"
+                               value="Yes"
+                               {% if symptoms and symptoms.night_vision %}checked{% endif %}>
+
+                        <div class="symptom-icon">
+                            ☾
+                        </div>
+
+                        <strong>
+                            Difficulty Seeing
+                            at Night
+                        </strong>
+
+                        <span class="card-check">
+                            ✓
+                        </span>
+
+                    </label>
+
+
+                    <label class="symptom-card">
+
+                        <input type="checkbox"
+                               name="blood_sugar_controlled"
+                               value="No"
+                               {% if symptoms and symptoms.blood_sugar_controlled == "No" %}checked{% endif %}>
+
+                        <div class="symptom-icon">
+                            ♡
+                        </div>
+
+                        <strong>
+                            Blood Sugar
+                            Not Controlled
+                        </strong>
+
+                        <span class="card-check">
+                            ✓
+                        </span>
+
+                    </label>
+
+
+                </div>
+
+
+                <div class="bottom-actions">
+
+                    <a href="{{ url_for('patient') }}"
+                       class="secondary-button">
+
+                        Back
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="primary-button">
+
+                        Next
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
